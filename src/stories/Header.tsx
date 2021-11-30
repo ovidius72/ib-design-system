@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { Button } from './Button';
+import React, { FC } from 'react';
 import './header.css';
 
 interface HeaderProps {
@@ -10,12 +8,7 @@ interface HeaderProps {
   onCreateAccount: () => void;
 }
 
-export const Header = ({
-  user,
-  onLogin,
-  onLogout,
-  onCreateAccount,
-}: HeaderProps) => (
+export const Header: FC<HeaderProps> = () => (
   <header>
     <div className="wrapper">
       <div>
@@ -41,21 +34,6 @@ export const Header = ({
           </g>
         </svg>
         <h1>Acme</h1>
-      </div>
-      <div>
-        {user ? (
-          <Button size="small" onClick={onLogout} label="Log out" />
-        ) : (
-          <>
-            <Button size="small" onClick={onLogin} label="Log in" />
-            <Button
-              primary
-              size="small"
-              onClick={onCreateAccount}
-              label="Sign up"
-            />
-          </>
-        )}
       </div>
     </div>
   </header>

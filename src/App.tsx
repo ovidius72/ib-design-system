@@ -1,8 +1,5 @@
-import { PrimaryButton } from '@fluentui/react';
 import React from 'react';
-import styled from 'styled-components';
-// import { createGlobalStyle } from 'styled-components/macro';
-import { layout, LayoutProps, space, SpaceProps } from 'styled-system';
+import { IBButton } from './components/Button/Button';
 
 // const GlobalStyle = createGlobalStyle`
 //   body {
@@ -21,24 +18,26 @@ import { layout, LayoutProps, space, SpaceProps } from 'styled-system';
 //   }
 // `;
 
-const Box = styled.div<LayoutProps & SpaceProps>`
-  ${layout};
-  ${space};
-  box-sizing: border-box;
-  background-color: green;
-  padding: 1em;
-`;
+// const Box = styled.div<LayoutProps & SpaceProps>`
+//   ${layout};
+//   ${space};
+//   box-sizing: border-box;
+//   background-color: green;
+//   padding: 1em;
+// `;
 
 export const App = () => {
   return (
     <div>
-      <h2 style={{ backgroundColor: 'violet' }}>My React App</h2>
-      <PrimaryButton>Test</PrimaryButton>
-      <Box m={1} px={10} width={[1, 1 / 4, 1 / 2, 1]}>
-        Inside a BOX
-      </Box>
-      <div>Test</div>
       {/* <GlobalStyle /> */}
+      <p> Default Button </p>
+      <div>
+        <IBButton text="Test button" />
+      </div>
+      <div>
+        <p> Primaty Button </p>
+        <IBButton variant="primary" text="Test button" />
+      </div>
     </div>
   );
 };

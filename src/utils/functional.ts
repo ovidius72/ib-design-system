@@ -24,7 +24,7 @@ export const tail = <T extends readonly unknown[]>(
 ): T extends readonly [infer _, ...infer U] ? U : T | undefined =>
   (val || []).slice(1) as any;
 
-const x = tail([1, 2, 3, 'string']);
+// const x = tail([1, 2, 3, 'string']);
 
 //------------------------------------------------------------------//
 //                             COMPOSE                              //
