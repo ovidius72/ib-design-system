@@ -26,6 +26,7 @@ const ligthTheme = createTheme({
     white: '#ffffff',
   },
 });
+
 const darkTheme = createTheme({
   palette: {
     themePrimary: '#d46520',
@@ -52,5 +53,8 @@ const darkTheme = createTheme({
     white: '#2e2e2e',
   },
 });
+
+export type IBThemeType = keyof typeof darkTheme['palette'] &
+  keyof typeof ligthTheme['palette'];
 
 export { ligthTheme, darkTheme };

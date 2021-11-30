@@ -1,34 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { IBThemeContext } from '../Providers/ThemeProvider';
+import { IBBox } from './components/Box/Box';
 import { IBButton } from './components/Button/Button';
 
-// const GlobalStyle = createGlobalStyle`
-//   body {
-//     font-size: 1em;
-//     margin: 0;
-//     background-color: white;
-//     padding: 0;
-//     color: #404040;
-//     font-family: Roboto, sans-serif;
-//     max-width: 1200px;
-//     margin: 0 auto;
-//     border: 1px solid #e3e3e3;
-//   }
-//   * {
-//   box-sizing: border-box;
-//   }
-// `;
-
-// const Box = styled.div<LayoutProps & SpaceProps>`
-//   ${layout};
-//   ${space};
-//   box-sizing: border-box;
-//   background-color: green;
-//   padding: 1em;
-// `;
-
 export const App = () => {
+  const { theme, setLightTheme, setDarkTheme, palette } =
+    useContext(IBThemeContext);
   return (
     <div>
+      <div>
+        <div>Current theme: {theme}</div>
+        <IBButton text="Ligh Theme" onClick={setLightTheme} />
+        <IBButton text="Dark Theme" onClick={setDarkTheme} />
+      </div>
+      <div>
+        <p>Box</p>
+        <IBBox p={2} m={0} bg={palette.themePrimary}>
+          This is a box
+        </IBBox>
+      </div>
       {/* <GlobalStyle /> */}
       <p> Default Button </p>
       <div>
