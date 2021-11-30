@@ -38,6 +38,10 @@ export const App = () => {
         <p> Primaty Button </p>
         <IBButton variant="primary" text="Test button" />
       </div>
+      <div>
+        <p> Loading Button </p>
+        <IBButton loading variant="primary" text="Test button" />
+      </div>
     </div>
   );
 };

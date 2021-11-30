@@ -17,8 +17,8 @@ const ButtonInner: FC<ButtonInnerProps> = ({ text, loading }) => {
       horizontal
     >
       {loading && (
-        <Stack.Item>
-          <Spinner size={SpinnerSize.medium} />
+        <Stack.Item align="center">
+          <Spinner size={SpinnerSize.small} />
         </Stack.Item>
       )}
       <Stack.Item>
