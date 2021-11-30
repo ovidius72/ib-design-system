@@ -1,6 +1,6 @@
-import { IBThemeProvider } from '../Providers/ThemeProvider';
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
+import { IBThemeProvider } from '../Providers/ThemeProvider';
 import App from './App';
 
 const root = document.getElementById('root');

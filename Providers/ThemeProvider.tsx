@@ -1,4 +1,4 @@
-import { IPalette, ThemeProvider } from '@fluentui/react';
+import { IPalette, Theme, ThemeProvider } from '@fluentui/react';
 import React, {
   createContext,
   FC,
@@ -50,12 +50,22 @@ const themeReducer = (state: ThemeState, action: ThemeAction): ThemeState => {
 
 type IBThemeContextType = {
   children: React.ReactNode;
+  theme?: {
+    light?: Partial<Theme>;
+    dark?: Partial<Theme>;
+  };
 };
-export const IBThemeProvider: FC<IBThemeContextType> = ({ children }) => {
+export const IBThemeProvider: FC<IBThemeContextType> = ({
+  children,
+  theme: customTheme,
+}) => {
   const [state, dispatch] = useReducer(themeReducer, { theme: 'light' });
 
+  const light = { ...ligthTheme, ...(customTheme || {}).light };
+  const dark = { ...darkTheme, ...(customTheme || {}).dark };
+
   const theme = useMemo(() => {
-    return state.theme === 'light' ? ligthTheme : darkTheme;
+    return state.theme === 'light' ? light : dark;
   }, [state.theme]);
 
   const setTheme = useCallback(
