@@ -1,12 +1,20 @@
-import React, { useContext } from 'react';
+import { initializeIcons, PanelType } from '@fluentui/react';
+import React, { useContext, useState } from 'react';
 import { IBThemeContext } from '../Providers/ThemeProvider';
 import { IBBox } from './components/Box/Box';
 import { IBButton } from './components/Button/Button';
 import { IBFlex } from './components/Flex/Flex';
+import { IBSidebar } from './components/Sidebar/Sidebar';
 import { IBSpace } from './components/Space/Space';
 import { IBText } from './components/Text/Text';
 
+initializeIcons();
 export const App = () => {
+  const [panelOpen, setPanelOpen] = useState(false);
+  const [subPanelOpen, setSubPanelOpen] = useState(false);
+  console.log('subPanelOpen', subPanelOpen);
+  console.log('panelOpen', panelOpen);
+
   const { theme, setLightTheme, setDarkTheme, palette } =
     useContext(IBThemeContext);
   return (
@@ -58,6 +66,25 @@ export const App = () => {
         <p> Loading Button </p>
         <IBButton loading variant="primary" text="Test button" />
       </div>
+      <IBButton text="Open Sidebar" onClick={() => setPanelOpen(true)} />
+      <IBSidebar
+        isOpen={panelOpen}
+        type={PanelType.medium}
+        onClose={() => {
+          setPanelOpen(false);
+          setSubPanelOpen(false);
+        }}
+        subPanel={{
+          subPanelContent: 'Ciao',
+          isOpen: subPanelOpen,
+          onClose: () => {
+            setSubPanelOpen(false);
+          },
+        }}
+      >
+        <IBButton onClick={() => setSubPanelOpen(true)} text="Open SubPanel" />
+        Content
+      </IBSidebar>
     </IBBox>
   );
 };
