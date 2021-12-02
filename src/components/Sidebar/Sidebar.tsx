@@ -1,4 +1,4 @@
-import { Icon, Stack } from '@fluentui/react';
+import { IconButton, Stack } from '@fluentui/react';
 import { IPanelProps, Panel, PanelType } from '@fluentui/react/lib/Panel';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { SizeType } from 'src/theme/type';
@@ -76,7 +76,10 @@ const IBSidebar: FC<IBSidebarProps> = ({
             >
               <Stack.Item>{(p && p.headerText) || ''}</Stack.Item>
               <Stack.Item>
-                <Icon iconName="ClosePane" onClick={subPanelProps.onClose} />
+                <IconButton
+                  iconProps={{ iconName: 'ChromeClose' }}
+                  onClick={subPanelProps.onClose}
+                />
               </Stack.Item>
             </Stack>
           );
@@ -94,6 +97,7 @@ const IBSidebar: FC<IBSidebarProps> = ({
               horizontal
               horizontalAlign="space-between"
               verticalAlign="center"
+              // TODO: Use theme spacing settings instead of hardcoded padding and gap values. (TO BE IMPLEMENTED)
               tokens={{ childrenGap: 4, padding: '0px 24px 8px 24px' }}
             >
               <Stack.Item>
@@ -101,8 +105,14 @@ const IBSidebar: FC<IBSidebarProps> = ({
               </Stack.Item>
               <Stack.Item>
                 <IBSpace size="xLarge">
-                  <Icon iconName="ClosePane" onClick={panelProps.onClose} />
-                  <Icon iconName="OpenPane" onClick={toggleSize} />
+                  <IconButton
+                    iconProps={{ iconName: 'ChromeClose' }}
+                    onClick={panelProps.onClose}
+                  />
+                  <IconButton
+                    iconProps={{ iconName: 'ArrowTallDownLeftIcon' }}
+                    onClick={toggleSize}
+                  />
                 </IBSpace>
               </Stack.Item>
             </Stack>

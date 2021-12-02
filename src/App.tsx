@@ -1,4 +1,4 @@
-import { initializeIcons, PanelType } from '@fluentui/react';
+import { PanelType } from '@fluentui/react';
 import React, { useContext, useState } from 'react';
 import { IBThemeContext } from '../Providers/ThemeProvider';
 import { IBBox } from './components/Box/Box';
@@ -8,7 +8,6 @@ import { IBSidebar } from './components/Sidebar/Sidebar';
 import { IBSpace } from './components/Space/Space';
 import { IBText } from './components/Text/Text';
 
-initializeIcons();
 export const App = () => {
   const [panelOpen, setPanelOpen] = useState(false);
   const [subPanelOpen, setSubPanelOpen] = useState(false);
