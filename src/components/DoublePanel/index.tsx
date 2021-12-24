@@ -2,6 +2,7 @@
 import React, { FC } from 'react';
 import { IBDoublePanelProps } from './doublepanel.types';
 import { Panel, PanelType } from '@fluentui/react';
+import { IBBox } from '../Box/Box';
 
 const IBDoublePanel: FC<IBDoublePanelProps> = ({
   mainHeaderText,
@@ -13,10 +14,10 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
   mainChildren,
   subChildren,
   handleDismissMainPanel,
-  handleOnRenderMainHeader,
-  handleOnRenderSubHeader,
-  mainPanelNavigationContent,
-  subPanelNavigationContent,
+  mainPanelHeader,
+  subPanelHeader,
+  mainPanelNavigation,
+  subPanelNavigation,
 }: IBDoublePanelProps) => {
   const panelStyles = {
     main: {
@@ -25,7 +26,7 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
   };
   const mainPanelStyles = {
     contentInner: {
-      background: '#E4E4E4',
+      background: 'rgba(0,0,0,0.05)',
     },
   };
   const subPanelStyles = {
@@ -33,9 +34,33 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
       marginRight: mainPanelWidthNumber ? `${mainPanelWidthNumber}%` : '50%',
     },
     contentInner: {
-      background: '#C2C2C2',
+      // background: 'rgba(0,0,0,0.1)',
     },
   };
+
+  const handleWrapPanelNavigation = (element: JSX.Element): any => {
+    return (
+      <IBBox p={2} mb={2}>
+        {element}
+      </IBBox>
+    )
+  }
+
+  const handleWrapPanelHeader = (element: JSX.Element): any => {
+    return (
+      <IBBox p={2} mb={2}>
+        {element}
+      </IBBox>
+    )
+  }
+
+  const handleWrapChildren = (element: JSX.Element): JSX.Element => {
+    return (
+      <IBBox p={2} mb={2}>
+        {element}
+      </IBBox>
+    )
+  }
 
   return (
     <>
@@ -43,8 +68,8 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
         id="ib-double-panel-main"
         styles={{ ...panelStyles, ...mainPanelStyles }}
         headerText={mainHeaderText}
-        onRenderHeader={handleOnRenderMainHeader}
-        onRenderNavigation={mainPanelNavigationContent}
+        onRenderHeader={() => handleWrapPanelHeader(mainPanelHeader)}
+        onRenderNavigation={() => handleWrapPanelNavigation(mainPanelNavigation)}
         isOpen={mainPanelOpen}
         customWidth={mainPanelWidthNumber ? `${mainPanelWidthNumber}%` : '50%'}
         type={PanelType.custom}
@@ -52,15 +77,15 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
         onDismiss={handleDismissMainPanel}
         onOuterClick={(e: any) => e.preventDefault()}
       >
-        {mainChildren}
+        {handleWrapChildren(mainChildren)}
       </Panel>
 
       <Panel
         id="ib-double-panel-sub"
         styles={{ ...panelStyles, ...subPanelStyles }}
         headerText={subHeaderText}
-        onRenderHeader={handleOnRenderSubHeader}
-        onRenderNavigation={subPanelNavigationContent}
+        onRenderHeader={() => handleWrapPanelHeader(subPanelHeader)}
+        onRenderNavigation={() => handleWrapPanelNavigation(subPanelNavigation)}
         isOpen={subPanelOpen}
         customWidth={subPanelWidthNumber ? `${subPanelWidthNumber}%` : '100%'}
         type={PanelType.custom}
@@ -68,7 +93,7 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
         hasCloseButton={false}
         onOuterClick={(e: any) => e.preventDefault()}
       >
-        {subChildren}
+        {subChildren && handleWrapChildren(subChildren)}
       </Panel>
     </>
   );

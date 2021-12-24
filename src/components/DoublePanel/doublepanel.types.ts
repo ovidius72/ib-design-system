@@ -12,8 +12,8 @@ export type IBDoublePanelProps = {
   subHeaderText?: string;
   mainHeaderText?: string;
   handleDismissMainPanel?: () => void
-  handleOnRenderMainHeader?: any;
-  handleOnRenderSubHeader?: any;
-  mainPanelNavigationContent?: any;
-  subPanelNavigationContent?: any;
+  mainPanelHeader?: any;
+  subPanelHeader?: any;
+  mainPanelNavigation?: any;
+  subPanelNavigation?: any;
 } & IPanelProps;
