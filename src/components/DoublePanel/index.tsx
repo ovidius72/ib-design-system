@@ -6,19 +6,23 @@ import { Panel, PanelType } from '@fluentui/react';
 const IBDoublePanel: FC<IBDoublePanelProps> = ({
   headerText,
   subHeaderText,
-  isMainPanelOpen,
-  isSubPanelOpen,
+  mainPanelOpen,
+  subPanelOpen,
   mainPanelWidthNumber,
   subPanelWidthNumber,
   mainChildren,
   subChildren,
-  toggleMainPanel,
-  toggleSubPanel,
+  handleDismissMainPanel,
 }: IBDoublePanelProps) => {
   
   const panelStyles = {
     main: {
       boxShadow: 'none'
+    },
+  }
+  const mainPanelStyles = {
+    contentInner: {
+      background: '#E4E4E4'
     }
   }
   const subPanelStyles = {
@@ -26,6 +30,9 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
       marginRight: mainPanelWidthNumber
         ? `${mainPanelWidthNumber}%`
         : '50%'
+    },
+    contentInner: {
+      background: '#C2C2C2'
     }
   }
 
@@ -33,13 +40,13 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
     <>
       <Panel
         id='ib-double-panel-main'
-        styles={{ ...panelStyles }}
+        styles={{ ...panelStyles, ...mainPanelStyles }}
         headerText={headerText}
-        isOpen={isMainPanelOpen}
+        isOpen={mainPanelOpen}
         customWidth={mainPanelWidthNumber ? `${mainPanelWidthNumber}%` : '50%'}
         type={PanelType.custom}
-        onDismiss={() => toggleMainPanel()}
         closeButtonAriaLabel="Close"
+        onDismiss={handleDismissMainPanel}
       >
         {mainChildren}
       </Panel>
@@ -48,10 +55,11 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
         id='ib-double-panel-sub'
         styles={{ ...panelStyles, ...subPanelStyles }}
         headerText={subHeaderText}
-        isOpen={isSubPanelOpen}
+        isOpen={subPanelOpen}
         customWidth={subPanelWidthNumber ? `${subPanelWidthNumber}%` : '100%'}
         type={PanelType.custom}
-        onDismiss={() => toggleSubPanel(false)}
+        closeButtonAriaLabel="Close"
+        hasCloseButton={false}
       >
         {subChildren}
       </Panel>

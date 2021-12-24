@@ -5,11 +5,10 @@ import React from 'react';
 export type IBDoublePanelProps = {
   mainChildren: JSX.Element;
   subChildren?: JSX.Element;
-  isMainPanelOpen: boolean;
-  isSubPanelOpen: boolean;
-  toggleMainPanel: (value?: boolean) => void;
-  toggleSubPanel: (value?: boolean) => void;
+  mainPanelOpen: boolean;
+  subPanelOpen: boolean;
   mainPanelWidthNumber?: number;
   subPanelWidthNumber?: number;
   subHeaderText?: string;
+  handleDismissMainPanel?: () => void
 } & IPanelProps;
