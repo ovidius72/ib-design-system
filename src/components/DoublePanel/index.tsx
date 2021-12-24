@@ -47,6 +47,7 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
         type={PanelType.custom}
         closeButtonAriaLabel="Close"
         onDismiss={handleDismissMainPanel}
+        onOuterClick={(e: any) => e.preventDefault()}
       >
         {mainChildren}
       </Panel>
@@ -61,6 +62,7 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
         type={PanelType.custom}
         closeButtonAriaLabel="Close"
         hasCloseButton={false}
+        onOuterClick={(e: any) => e.preventDefault()}
       >
         {subChildren}
       </Panel>
