@@ -13,19 +13,19 @@ const Template: Story<IBButtonProps> = args => (
 );
 export const DefaultButton: Story<IBButtonProps> = Template.bind({});
 DefaultButton.args = {
-  text: 'Primary Button',
+  text: 'Default',
   variant: 'default',
 };
 
 export const PrimaryButton: Story<IBButtonProps> = Template.bind({});
 PrimaryButton.args = {
-  text: 'Primary Button',
+  text: 'Primary',
   variant: 'primary',
 };
 
 export const LoadingButton: Story<IBButtonProps> = Template.bind({});
 LoadingButton.args = {
-  text: 'Primary Button',
+  text: 'Loading',
   variant: 'primary',
   loading: true,
 };
