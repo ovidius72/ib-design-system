@@ -19,6 +19,7 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
     <>
       <Panel
         className="ib-double-panel ib-double-panel--main"
+        styles={{ boxShadow: 'none' }}
         headerText={headerText}
         isOpen={isMainPanelOpen}
         customWidth={mainPanelWidthNumber ? `${mainPanelWidthNumber}%` : '50%'}

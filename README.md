@@ -1,12 +1,29 @@
-# Fluent UI based Design System.
-React + Typescript + + Styled Components + Storybook
+# ⚡️ Fluent UI based Design System.
 
-### WIP
-- Component development.
+This repo uses storybook to create a reusable design system
 
-#### IN PROGRESS:
-- Theme Provider (create a custom hook)
-- funcional patterns 
-- suspense, error boundary
-- testing components (jest and react testing library)
+# 👾 Tech stack
 
+- React
+- Typescript
+- Styled Components
+- Storybook
+
+# 🔨 In Progress
+- DoublePanel component
+
+# 💡 Useful Links & Articles
+
+- [Styling FluentUI Components](https://github.com/microsoft/fluentui/blob/cbc0b9a2f9b569eeabd7bba3812002edcca948e8/packages/react-internal/src/components/Panel/Panel.styles.ts#L23)
+
+# 🚦 Get Started
+
+### Available scripts
+
+```
+npm install
+
+npm run start
+
+npm run storybook
+```
