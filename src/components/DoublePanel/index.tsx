@@ -4,7 +4,7 @@ import { IBDoublePanelProps } from './doublepanel.types';
 import { Panel, PanelType } from '@fluentui/react';
 
 const IBDoublePanel: FC<IBDoublePanelProps> = ({
-  headerText,
+  mainHeaderText,
   subHeaderText,
   mainPanelOpen,
   subPanelOpen,
@@ -13,35 +13,35 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
   mainChildren,
   subChildren,
   handleDismissMainPanel,
+  handleOnRenderMainHeader,
+  handleOnRenderSubHeader,
 }: IBDoublePanelProps) => {
-  
   const panelStyles = {
     main: {
-      boxShadow: 'none'
+      boxShadow: 'none',
     },
-  }
+  };
   const mainPanelStyles = {
     contentInner: {
-      background: '#E4E4E4'
-    }
-  }
+      background: '#E4E4E4',
+    },
+  };
   const subPanelStyles = {
     root: {
-      marginRight: mainPanelWidthNumber
-        ? `${mainPanelWidthNumber}%`
-        : '50%'
+      marginRight: mainPanelWidthNumber ? `${mainPanelWidthNumber}%` : '50%',
     },
     contentInner: {
-      background: '#C2C2C2'
-    }
-  }
+      background: '#C2C2C2',
+    },
+  };
 
   return (
     <>
       <Panel
-        id='ib-double-panel-main'
+        id="ib-double-panel-main"
         styles={{ ...panelStyles, ...mainPanelStyles }}
-        headerText={headerText}
+        headerText={mainHeaderText}
+        onRenderHeader={handleOnRenderMainHeader}
         isOpen={mainPanelOpen}
         customWidth={mainPanelWidthNumber ? `${mainPanelWidthNumber}%` : '50%'}
         type={PanelType.custom}
@@ -52,9 +52,10 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
       </Panel>
 
       <Panel
-        id='ib-double-panel-sub'
+        id="ib-double-panel-sub"
         styles={{ ...panelStyles, ...subPanelStyles }}
         headerText={subHeaderText}
+        onRenderHeader={handleOnRenderSubHeader}
         isOpen={subPanelOpen}
         customWidth={subPanelWidthNumber ? `${subPanelWidthNumber}%` : '100%'}
         type={PanelType.custom}

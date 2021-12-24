@@ -10,8 +10,8 @@ export const App = () => {
 
   const handleDismissMainPanel = () => {
     if (!mainPanelOpen) return;
-    setMainPanelOpen(false)
-    setSubPanelOpen(false)
+    setMainPanelOpen(false);
+    setSubPanelOpen(false);
     return;
   };
 
@@ -21,15 +21,17 @@ export const App = () => {
 
   const mainChildrenContent = () => {
     return (
-      <div>
+      <IBBox mb={4}>
         <div
-          style={{ fontSize: '1.5rem', cursor: 'pointer' }}
+          style={{
+            border: '2px solid red',
+            background: '#C2C2C2',
+            cursor: 'pointer',
+          }}
           onClick={handleOpenSubPanel}
         >
-          <h3>This is the Main Panel</h3>
-          <p>
-            Click anywhere in the article to open sub panel.
-          </p>
+          <h3>Children of Main Panel</h3>
+          <p>Click anywhere in the article to open sub panel.</p>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam illo
             dolorem quam aliquid dolore sequi unde praesentium, quo est. Dicta
@@ -38,7 +40,35 @@ export const App = () => {
           </p>
           <img src="https://picsum.photos/1000/200" alt="test" />
         </div>
-      </div>
+      </IBBox>
+    );
+  };
+
+  const mainPanelHeaderContent = () => {
+    return (
+      <IBBox mb={4}>
+        <h3>Header of Main Panel</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum neque
+          accusantium reprehenderit deserunt facere amet sint? Corporis impedit,
+          iste recusandae, sed nisi quam et reiciendis ab ex nihil, distinctio
+          aut.
+        </p>
+      </IBBox>
+    );
+  };
+
+  const subPanelHeaderContent = () => {
+    return (
+      <IBBox mb={4}>
+        <h3>Header of Sub Panel</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum neque
+          accusantium reprehenderit deserunt facere amet sint? Corporis impedit,
+          iste recusandae, sed nisi quam et reiciendis ab ex nihil, distinctio
+          aut.
+        </p>
+      </IBBox>
     );
   };
 
@@ -67,13 +97,15 @@ export const App = () => {
 
       <IBButton text="Open Sidebar" onClick={handleOpenMainPanel} />
       <IBDoublePanel
-        headerText={'Main Header'}
+        mainHeaderText={'Main Header'}
         subHeaderText={'Sub Header'}
         mainPanelOpen={mainPanelOpen}
         subPanelOpen={subPanelOpen}
         mainChildren={mainChildrenContent()}
         subChildren={subChildrenContent()}
         handleDismissMainPanel={handleDismissMainPanel}
+        handleOnRenderMainHeader={mainPanelHeaderContent}
+        handleOnRenderSubHeader={subPanelHeaderContent}
       />
     </IBBox>
   );
