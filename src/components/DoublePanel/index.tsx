@@ -15,6 +15,8 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
   handleDismissMainPanel,
   handleOnRenderMainHeader,
   handleOnRenderSubHeader,
+  mainPanelNavigationContent,
+  subPanelNavigationContent,
 }: IBDoublePanelProps) => {
   const panelStyles = {
     main: {
@@ -42,6 +44,7 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
         styles={{ ...panelStyles, ...mainPanelStyles }}
         headerText={mainHeaderText}
         onRenderHeader={handleOnRenderMainHeader}
+        onRenderNavigation={mainPanelNavigationContent}
         isOpen={mainPanelOpen}
         customWidth={mainPanelWidthNumber ? `${mainPanelWidthNumber}%` : '50%'}
         type={PanelType.custom}
@@ -57,6 +60,7 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
         styles={{ ...panelStyles, ...subPanelStyles }}
         headerText={subHeaderText}
         onRenderHeader={handleOnRenderSubHeader}
+        onRenderNavigation={subPanelNavigationContent}
         isOpen={subPanelOpen}
         customWidth={subPanelWidthNumber ? `${subPanelWidthNumber}%` : '100%'}
         type={PanelType.custom}
