@@ -93,12 +93,6 @@ export const App = () => {
         App.tsx: You can test your components here for a realistic experience
       </IBBox>
 
-      <IBBox mb={4}>
-        <h3 style={{ color: 'red' }}>ISSUE: </h3>
-        <p><strong>Current</strong>: When I click the sub panel, it dismisses both</p>
-        <p><strong>Expected</strong>: When I click the sub panel, nothing happens</p>
-      </IBBox>
-
       <IBBox mb={4}>Component: <strong>DoublePanel</strong></IBBox>
 
       <IBButton text="Open main panel" onClick={handleOpenMainPanel} />
