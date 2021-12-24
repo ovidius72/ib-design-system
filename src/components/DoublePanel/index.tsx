@@ -17,9 +17,8 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
 }: IBDoublePanelProps) => {
   return (
     <>
-      {/* Main Panel */}
-
       <Panel
+        className="ib-double-panel ib-double-panel--main"
         headerText={headerText}
         isOpen={isMainPanelOpen}
         customWidth={mainPanelWidthNumber ? `${mainPanelWidthNumber}%` : '50%'}
@@ -30,24 +29,23 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
         {mainChildren}
       </Panel>
 
-      {/* Sub Panel */}
-
       <Panel
+        className="ib-double-panel ib-double-panel--sub"
         headerText={subHeaderText}
         isOpen={isSubPanelOpen}
         styles={{
           root: {
-            marginRight: mainPanelWidthNumber ? `${mainPanelWidthNumber}%` : '50%',
-          }
+            marginRight: mainPanelWidthNumber
+              ? `${mainPanelWidthNumber}%`
+              : '50%',
+          },
         }}
         customWidth={subPanelWidthNumber ? `${subPanelWidthNumber}%` : '100%'}
         type={PanelType.custom}
         onDismiss={() => toggleSubPanel(false)}
-        // closeButtonAriaLabel="Close"
       >
         {subChildren}
       </Panel>
-
     </>
   );
 };
