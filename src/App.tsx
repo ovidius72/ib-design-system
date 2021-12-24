@@ -5,31 +5,39 @@ import { IBButton } from './components/Button/Button';
 import IBDoublePanel from './components/DoublePanel';
 
 export const App = () => {
-
-  const [panelOpen, setPanelOpen] = useState(false);
+  const [mainPanelOpen, setMainPanelOpen] = useState(false);
   const [subPanelOpen, setSubPanelOpen] = useState(false);
 
-  const handleToggleMainPanel = () => setPanelOpen(!panelOpen);
+  const handleDismissMainPanel = () => {
+    if (!mainPanelOpen) return;
+    setMainPanelOpen(false)
+    setSubPanelOpen(false)
+    return;
+  };
 
-  const handleToggleSubPanel = (value?: boolean) =>
-    typeof value === 'boolean'
-      ? setSubPanelOpen(value)
-      : setSubPanelOpen(!subPanelOpen);
+  const handleOpenMainPanel = () => !mainPanelOpen && setMainPanelOpen(true);
+
+  const handleOpenSubPanel = () => !subPanelOpen && setSubPanelOpen(true);
 
   const mainChildrenContent = () => {
     return (
       <div>
-        <h1>MAIN CONTENT</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-          assumenda eos hic repudiandae inventore dolore voluptate fugit quidem
-          non officiis! Quisquam maxime modi quibusdam, iure dolor nobis eveniet
-          consequuntur tempore.
-        </p>
-        <IBButton
-          text="Open Sub Panel"
-          onClick={() => handleToggleSubPanel()}
-        />
+        <div
+          style={{ fontSize: '1.5rem', cursor: 'pointer' }}
+          onClick={handleOpenSubPanel}
+        >
+          <h3>This is the Main Panel</h3>
+          <p>
+            Click anywhere in the article to open sub panel.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam illo
+            dolorem quam aliquid dolore sequi unde praesentium, quo est. Dicta
+            exercitationem hic voluptate ratione quae, suscipit beatae saepe ut
+            necessitatibus.
+          </p>
+          <img src="https://picsum.photos/1000/200" alt="test" />
+        </div>
       </div>
     );
   };
@@ -57,16 +65,15 @@ export const App = () => {
 
       <IBBox mb={4}>1) IBDoublePanel</IBBox>
 
-      <IBButton text="Open Sidebar" onClick={() => setPanelOpen(true)} />
+      <IBButton text="Open Sidebar" onClick={handleOpenMainPanel} />
       <IBDoublePanel
         headerText={'Main Header'}
         subHeaderText={'Sub Header'}
-        toggleMainPanel={handleToggleMainPanel}
-        toggleSubPanel={handleToggleSubPanel}
-        isMainPanelOpen={panelOpen}
-        isSubPanelOpen={subPanelOpen}
+        mainPanelOpen={mainPanelOpen}
+        subPanelOpen={subPanelOpen}
         mainChildren={mainChildrenContent()}
         subChildren={subChildrenContent()}
+        handleDismissMainPanel={handleDismissMainPanel}
       />
     </IBBox>
   );
