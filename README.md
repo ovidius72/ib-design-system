@@ -9,5 +9,4 @@ React + Typescript + + Styled Components + Storybook
 - funcional patterns 
 - suspense, error boundary
 - testing components (jest and react testing library)
-- test
 

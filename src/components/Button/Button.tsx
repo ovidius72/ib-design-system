@@ -3,11 +3,11 @@ import React, { FC, useMemo } from 'react';
 import { ButtonInner } from './ButtonInner';
 
 export type IBButtonProps = {
-  /** Show the loading spinner */
+  /** Show the loading spinner. */
   loading?: boolean;
-  /** the text */
+  /** The text. */
   text: string;
-  /** variant type */
+  /** Variant type. */
   variant?: 'primary' | 'default';
 } & IButtonProps;
 
@@ -21,6 +21,7 @@ const IBButton: FC<IBButtonProps> = props => {
   const buttonInner = useMemo(() => {
     return <ButtonInner text={text} loading={loading} />;
   }, [text, loading]);
+
   return <ButtonType {...rest}>{buttonInner}</ButtonType>;
 };
 
