@@ -4,7 +4,7 @@ This is an example of a parent component that holds the logic for the callback p
 
 <br />
 
-```typescript
+```tsx
 import React, { useState } from 'react';
 import { IBBox } from './components/Box/Box';
 import { IBButton } from './components/Button/Button';
