@@ -5,7 +5,7 @@ import Filters from './components/Filters';
 
 export const App = () => {
   const mockedItems = [
-    { id: 0, name: 'input_text', label: 'Search All', type: 0 },
+    { id: 0, name: 'input_text', label: 'Search All', type: 0, placeholder: "custom placeholder" },
     { id: 1, name: 'input_number', label: 'Filter by Number', type: 1 },
     { id: 2, name: 'input_select', label: 'Selection', type: 2 },
     { id: 3, name: 'input_currency', label: 'by Number (Currency)', type: 3 },
