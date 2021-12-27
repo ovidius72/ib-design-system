@@ -86,7 +86,7 @@ const IBDoublePanel: FC<IBDoublePanelProps> = ({
         headerText={subHeaderText}
         onRenderHeader={() => handleWrapPanelHeader(subPanelHeader)}
         onRenderNavigation={() => handleWrapPanelNavigation(subPanelNavigation)}
-        isOpen={subPanelOpen}
+        isOpen={mainPanelOpen && subPanelOpen}
         customWidth={subPanelWidthNumber ? `${subPanelWidthNumber}%` : '100%'}
         type={PanelType.custom}
         closeButtonAriaLabel="Close"
