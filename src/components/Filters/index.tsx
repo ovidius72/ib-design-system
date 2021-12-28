@@ -15,9 +15,9 @@ const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
     setFilterState(state);
   }, [state]);
 
-  // +-- text inputs, number inputs
+  // search input
 
-  const preHandleSetState = (
+  const preHandleSetStateSearchText = (
     fieldName: string,
     updatedValue: string | number | undefined,
   ) => {
@@ -27,9 +27,9 @@ const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
     });
   };
 
-  // +-- currency inputs
+  // numeric inputs [numbers and currencies]
   
-  const preHandleSetStateCurrency = ( fieldName: string, value: string | undefined ) => {
+  const preHandleSetStateNumeric = ( fieldName: string, value: string | undefined ) => {
 
     // cleanup when empty
     if (!value) {
@@ -62,41 +62,44 @@ const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
 
   };
 
+  // output currency
+
   const renderInputCurrency = (str: string) => {
     return str.replace(/^\d+(?=.|$)/, (int) => int.replace(/(?=(?:\d{3})+$)(?!^)/g, ","));
   }
 
-  // +-- RENDERERS ----------------------------
+  // rendering logic
 
   const handleRenderFilters = (filters: FilterItem[]) => {
     return filters.map(({ id, name, label, type, placeholder, prefix }: FilterItem) => {
       switch (type) {
-        case 0:
+        case 0: // search/text input
           return (
             <SearchBox
               key={id}
               styles={searchBoxStyles}
               placeholder={placeholder ?? 'Search'}
-              onChange={(_, newValue) => preHandleSetState(name, newValue)}
+              onChange={(_, newValue) => preHandleSetStateSearchText(name, newValue)}
             />
           );
 
-        case 1:
+        case 1: // numeric input
           return (
             <TextField
               styles={textBoxStyles}
               key={id}
               name={name}
               placeholder={placeholder ?? 'Number'}
-              // onChange={(e: any) => handleNumericInputChange(e.target.value)}
-              onGetErrorMessage={() => state[name]?.error}
+              onChange={(_, newValue) => preHandleSetStateNumeric(name, newValue)}
+              onGetErrorMessage={() => state[name]?.fieldError}
+              value={state[name]?.value}
             />
           );
 
-        case 2:
+        case 2: // select input
           return <div key={id}>2</div>;
 
-        case 3:
+        case 3: // currency input
           return (
             <TextField
               styles={textBoxStyles}
@@ -105,7 +108,7 @@ const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
               placeholder={placeholder ?? 'Currency'}
               prefix={prefix ?? '€'}
               onChange={(e: any) =>
-                preHandleSetStateCurrency(name, e.target.value)
+                preHandleSetStateNumeric(name, e.target.value)
               }
               onGetErrorMessage={() => state[name]?.fieldError}
               value={renderInputCurrency(state[name]?.value ?? '')}

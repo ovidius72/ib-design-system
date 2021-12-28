@@ -42,7 +42,7 @@ export const App = () => {
       <IBBox mb={4}>
         Component: <strong>Filters</strong>
       </IBBox>
-      <IBBox mb={4}> state: {filterState && JSON.stringify(filterState)}</IBBox>
+      <IBBox mb={4}> Filters state: {filterState && JSON.stringify(filterState)}</IBBox>
 
       <Filters
         setFilterState={handleSetFilterState}
