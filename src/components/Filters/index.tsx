@@ -38,6 +38,14 @@ const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
       return setState({ ...state, [fieldName]: { value: '', fieldError: 'Invalid input' } })
     };
 
+    while (value[0] === '0') {
+      value = value.substring(1);
+    }
+
+    const decimals = value.split('.')[1];
+
+    if (decimals && decimals.length > 2) return;
+
     return setState({ ...state, [fieldName]: { value: value, fieldError: '' } });
 
   };
@@ -51,19 +59,7 @@ const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
               key={id}
               styles={searchBoxStyles}
               placeholder={placeholder ?? 'Search'}
-              onEscape={ev => {
-                console.log('Custom onEscape Called');
-              }}
-              onClear={ev => {
-                console.log('Custom onClear Called');
-              }}
-              onChange={(_, newValue) => {
-                console.log('SearchBox onChange fired: ' + newValue);
-                preHandleSetState(name, newValue);
-              }}
-              onSearch={newValue =>
-                console.log('SearchBox onSearch fired: ' + newValue)
-              }
+              onChange={(_, newValue) => preHandleSetState(name, newValue)}
             />
           );
 
@@ -94,6 +90,7 @@ const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
                 preHandleSetStateCurrency(name, e.target.value)
               }
               onGetErrorMessage={() => state[name]?.fieldError}
+              value={state[name]?.value ?? ''}
             />
           );
 
