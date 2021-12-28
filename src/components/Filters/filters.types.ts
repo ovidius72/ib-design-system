@@ -12,6 +12,7 @@ export type FilterItem = {
   label: string;
   type: InputType;
   placeholder?: string;
+  prefix?: string;
 }
 
 export type IBFiltersProps = {

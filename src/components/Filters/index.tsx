@@ -16,29 +16,34 @@ const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
 
   useEffect(() => {
     setFilterState(state);
-  }, [state])
+  }, [state]);
 
-  const preHandleSetState = (fieldName: string, updatedValue: string | number | undefined) => {
-    return setState({ ...state, [fieldName]: { value: updatedValue, fieldError: '' } });
-  }
+  const preHandleSetState = (
+    fieldName: string,
+    updatedValue: string | number | undefined,
+  ) => {
+    return setState({
+      ...state,
+      [fieldName]: { value: updatedValue, fieldError: '' },
+    });
+  };
+  
+  const preHandleSetStateCurrency = ( fieldName: string, value: string | undefined ) => {
+    
+    if (!value) {
+      return setState({ ...state, [fieldName]: { value: '', fieldError: '' } })
+    };
 
-  const preHandleSetStateCurrency = (fieldName: string, updatedValue: string | number | undefined) => {
+    if (Number.isNaN(Number(value))) {
+      return setState({ ...state, [fieldName]: { value: '', fieldError: 'Invalid input' } })
+    };
 
-    if (!updatedValue) {
-      setState({ ...state, [fieldName]: { value: '', fieldError: '' } });
-      return;
-    }
+    return setState({ ...state, [fieldName]: { value: value, fieldError: '' } });
 
-    if (Number.isNaN(Number(updatedValue))) {
-      setState({ ...state, [fieldName]: { value: updatedValue, fieldError: 'Invalid input' } });
-      return;
-    }
-
-    return setState({ ...state, [fieldName]: { value: updatedValue, fieldError: '' } });
-  }
+  };
 
   const handleRenderFilters = (filters: FilterItem[]) => {
-    return filters.map(({ id, name, label, type, placeholder }: FilterItem) => {
+    return filters.map(({ id, name, label, type, placeholder, prefix }: FilterItem) => {
       switch (type) {
         case 0:
           return (
@@ -84,9 +89,11 @@ const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
               key={id}
               name={name}
               placeholder={placeholder ?? 'Currency'}
-              // onChange={(e: any) => handleCurrencyInputChange(e.target.value)}
-              onChange={(e: any) => preHandleSetStateCurrency(name, e.target.value)}
-              onGetErrorMessage={() => state[name]?.error}
+              prefix={prefix ?? '€'}
+              onChange={(e: any) =>
+                preHandleSetStateCurrency(name, e.target.value)
+              }
+              onGetErrorMessage={() => state[name]?.fieldError}
             />
           );
 
@@ -96,11 +103,7 @@ const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
     });
   };
 
-  return (
-    <IBBox mb={4}>
-      {handleRenderFilters(items)}
-    </IBBox>
-  );
+  return <IBBox mb={4}>{handleRenderFilters(items)}</IBBox>;
 };
 
 export default Filters;

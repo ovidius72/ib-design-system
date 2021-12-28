@@ -30,6 +30,7 @@ export const App = () => {
       label: 'Search By Capital',
       placeholder: 'Search By Capital',
       type: 3,
+      prefix: '€'
     },
   ];
 
