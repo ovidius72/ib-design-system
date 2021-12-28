@@ -4,6 +4,7 @@ import { IBFiltersProps, FilterItem } from './filters.types';
 import { SearchBox, ISearchBoxStyles } from '@fluentui/react/lib/SearchBox';
 import { TextField } from '@fluentui/react/lib/TextField';
 import { IBBox } from '../Box/Box';
+import IBSelect from '../Select';
 
 const IBFilters = ({ setFilterState, items = [] }: IBFiltersProps) => {
   const searchBoxStyles = { root: { width: 200 } };
@@ -77,6 +78,7 @@ const IBFilters = ({ setFilterState, items = [] }: IBFiltersProps) => {
     );
   };
 
+  
   // rendering logic
 
   const handleRenderFilters = (filters: FilterItem[]) => {
@@ -118,7 +120,7 @@ const IBFilters = ({ setFilterState, items = [] }: IBFiltersProps) => {
             return (
               <IBBox mr={4} key={id}>
                 {label}
-                <div>⚠️ select component 🔨</div>
+                <IBSelect />
               </IBBox>
             );
 
