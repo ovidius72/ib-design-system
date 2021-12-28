@@ -5,9 +5,6 @@ import { SearchBox, ISearchBoxStyles } from '@fluentui/react/lib/SearchBox';
 import { TextField } from '@fluentui/react/lib/TextField';
 import { IBBox } from '../Box/Box';
 
-// CURRENCY INPUT example
-// https://github.com/cchanxzy/react-currency-input-field/blob/master/src/examples/Example1.tsx
-
 const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
   const searchBoxStyles = { root: { width: 200 } };
   const textBoxStyles = { root: { width: 200 } };
@@ -18,6 +15,8 @@ const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
     setFilterState(state);
   }, [state]);
 
+  // +-- text inputs, number inputs
+
   const preHandleSetState = (
     fieldName: string,
     updatedValue: string | number | undefined,
@@ -27,6 +26,8 @@ const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
       [fieldName]: { value: updatedValue, fieldError: '' },
     });
   };
+
+  // +-- currency inputs
   
   const preHandleSetStateCurrency = ( fieldName: string, value: string | undefined ) => {
 
@@ -64,6 +65,8 @@ const Filters = ({ setFilterState, items = [] }: IBFiltersProps) => {
   const renderInputCurrency = (str: string) => {
     return str.replace(/^\d+(?=.|$)/, (int) => int.replace(/(?=(?:\d{3})+$)(?!^)/g, ","));
   }
+
+  // +-- RENDERERS ----------------------------
 
   const handleRenderFilters = (filters: FilterItem[]) => {
     return filters.map(({ id, name, label, type, placeholder, prefix }: FilterItem) => {
