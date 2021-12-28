@@ -83,7 +83,7 @@ const IBFilters = ({ setFilterState, items = [] }: IBFiltersProps) => {
 
   const handleRenderFilters = (filters: FilterItem[]) => {
     return filters.map(
-      ({ id, name, label, type, placeholder, prefix }: FilterItem) => {
+      ({ id, name, label, type, options, placeholder, prefix }: FilterItem) => {
         switch (type) {
           case 0: // search/text input
             return (
@@ -120,7 +120,7 @@ const IBFilters = ({ setFilterState, items = [] }: IBFiltersProps) => {
             return (
               <IBBox mr={4} key={id}>
                 {label}
-                <IBSelect />
+                <IBSelect options={options} label={label} />
               </IBBox>
             );
 

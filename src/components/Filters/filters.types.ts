@@ -9,10 +9,11 @@ enum InputType {
 export type FilterItem = {
   id: number;
   name: string;
-  label: string;
+  label?: string;
   type: InputType;
   placeholder?: string;
   prefix?: string;
+  options?: any[];
 }
 
 export type IBFiltersProps = {

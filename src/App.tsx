@@ -23,14 +23,38 @@ export const App = () => {
       type: 1,
       placeholder: 'Type any number',
     },
-    { id: 2, name: 'input_select', label: 'Selection', type: 2 },
+    {
+      id: 2,
+      name: 'selectedType',
+      label: 'Selection',
+      type: 2,
+      options: [
+        {
+          key: 'fruitsHeader',
+          text: 'Fruits',
+          itemType: 2,
+        },
+        { key: 'apple', text: 'Apple' },
+        { key: 'banana', text: 'Banana' },
+        { key: 'orange', text: 'Orange', disabled: true },
+        { key: 'grape', text: 'Grape' },
+        {
+          key: 'vegetablesHeader',
+          text: 'Vegetables',
+          itemType: 2,
+        },
+        { key: 'broccoli', text: 'Broccoli' },
+        { key: 'carrot', text: 'Carrot' },
+        { key: 'lettuce', text: 'Lettuce' },
+      ],
+    },
     {
       id: 3,
       name: 'searchByCapital',
       label: 'Search By Capital',
       placeholder: 'Input in euros',
       type: 3,
-      prefix: '€'
+      prefix: '€',
     },
   ];
 
@@ -42,12 +66,12 @@ export const App = () => {
       <IBBox mb={4}>
         Component: <strong>Filters</strong>
       </IBBox>
-      <IBBox mb={4}> Filters state: {filterState && JSON.stringify(filterState)}</IBBox>
+      <IBBox mb={4}>
+        {' '}
+        Filters state: {filterState && JSON.stringify(filterState)}
+      </IBBox>
 
-      <IBFilters
-        setFilterState={handleSetFilterState}
-        items={mockedItems}
-      />
+      <IBFilters setFilterState={handleSetFilterState} items={mockedItems} />
     </IBBox>
   );
 };
