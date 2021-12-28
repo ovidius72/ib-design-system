@@ -15,5 +15,6 @@ export type FilterItem = {
 }
 
 export type IBFiltersProps = {
+  setFilterState: any; // TODO remove any
   items?: FilterItem[];
 }
