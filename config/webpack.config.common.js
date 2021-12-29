@@ -78,7 +78,7 @@ const config = (mode, cb) => {
             use: 'source-map-loader',
             enforce: 'pre',
             exclude: [
-              path.join(process.cwd(), 'node_modules'),
+              /node_modules/,
               /build/,
               /locale/,
               /typings/,

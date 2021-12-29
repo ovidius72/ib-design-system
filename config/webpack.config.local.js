@@ -1,3 +1,4 @@
+const path = require('path');
 const { merge } = require('webpack-merge');
 // const webpack = require('webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
@@ -8,7 +9,9 @@ const getConfig = require('./webpack.config.common');
 module.exports = (env, { mode }) => {
   const newConfig = getConfig(
     mode,
-    ({ BASE_PATH, DEV_PORT, DEV_HOST }, baseConfig) => {
+    (args, baseConfig) => {
+      const { BASE_PATH, DEV_PORT, DEV_HOST, paths } = args;
+      const static = path.join(paths.root, BASE_PATH);
       return merge(baseConfig, {
         mode,
         module: {
@@ -56,7 +59,7 @@ module.exports = (env, { mode }) => {
           hot: true,
           // headers: () => ({ 'x-webpack-template': 'react-tsx-i18n' }),
           historyApiFallback: true,
-          static: { directory: BASE_PATH },
+          static: ['public'],
           client: {
             progress: false,
             overlay: {
