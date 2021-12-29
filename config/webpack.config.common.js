@@ -158,9 +158,11 @@ const config = (mode, cb) => {
             files: ['./src/**/*.ts', './src/**/*.tsx'],
           },
         }),
-        new ESLintPlugin({
-          files: ['./src/**/*.ts', './src/**/*.tsx'],
-        }),
+        // new ESLintPlugin({
+        //   files: ['src/**/*.ts', 'src/**/*.tsx'],
+        //   exclude: ['node_modules', 'public', 'testing', 'locales', 'build', 'config'],
+        //   failOnWarning: true,
+        // }),
         // new FaviconsWebpackPlugin({
         //   logo: path.join(paths.public, 'favicon.png'),
         //   prefix: 'favicons/[name]-[fullhash]',
@@ -177,7 +179,7 @@ const config = (mode, cb) => {
           template: path.join(paths.public, 'index.html'),
         }),
       ],
-      optimization: {
+     optimization: {
         splitChunks: {
           cacheGroups: {
             default: {
