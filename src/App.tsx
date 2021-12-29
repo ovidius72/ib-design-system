@@ -1,5 +1,4 @@
-/* eslint-disable */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { IBBox } from './components/Box/Box';
 import IBFilters from './components/Filters';
 
@@ -30,7 +29,7 @@ export const App = () => {
       label: 'Search By Capital',
       placeholder: 'Input in euros',
       type: 3,
-      prefix: '€'
+      prefix: '€',
     },
   ];
 
@@ -42,12 +41,12 @@ export const App = () => {
       <IBBox mb={4}>
         Component: <strong>Filters</strong>
       </IBBox>
-      <IBBox mb={4}> Filters state: {filterState && JSON.stringify(filterState)}</IBBox>
+      <IBBox mb={4}>
+        {' '}
+        Filters state: {filterState && JSON.stringify(filterState)}
+      </IBBox>
 
-      <IBFilters
-        setFilterState={handleSetFilterState}
-        items={mockedItems}
-      />
+      <IBFilters setFilterState={handleSetFilterState} items={mockedItems} />
     </IBBox>
   );
 };

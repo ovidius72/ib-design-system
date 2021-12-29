@@ -11,7 +11,7 @@ module.exports = (env, { mode }) => {
     mode,
     (args, baseConfig) => {
       const { BASE_PATH, DEV_PORT, DEV_HOST, paths } = args;
-      const static = path.join(paths.root, BASE_PATH);
+      // const static = path.join(paths.root, BASE_PATH);
       return merge(baseConfig, {
         mode,
         module: {
