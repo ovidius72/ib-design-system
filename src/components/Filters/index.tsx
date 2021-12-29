@@ -1,9 +1,10 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { IBFiltersProps, FilterItem } from './filters.types';
-import { SearchBox, ISearchBoxStyles } from '@fluentui/react/lib/SearchBox';
+import { SearchBox } from '@fluentui/react/lib/SearchBox';
 import { TextField } from '@fluentui/react/lib/TextField';
 import { IBBox } from '../Box/Box';
+import { IDropdownOption } from '@fluentui/react/lib/Dropdown';
 import IBSelect from '../Select';
 
 const IBFilters = ({ setFilterState, items = [] }: IBFiltersProps) => {
@@ -36,7 +37,6 @@ const IBFilters = ({ setFilterState, items = [] }: IBFiltersProps) => {
   ) => {
     // cleanup when empty
     if (!value) {
-      console.log('empty!');
       return setState({ ...state, [fieldName]: { value: '', fieldError: '' } });
     }
 
@@ -47,7 +47,6 @@ const IBFilters = ({ setFilterState, items = [] }: IBFiltersProps) => {
 
     // error if not a valid number
     if (Number.isNaN(Number(value))) {
-      console.log('invalid!');
       return setState({
         ...state,
         [fieldName]: { value: '', fieldError: 'Invalid input' },
@@ -70,6 +69,18 @@ const IBFilters = ({ setFilterState, items = [] }: IBFiltersProps) => {
     });
   };
 
+  // select input
+
+  const preHandleSetStateSelect = (
+    fieldName: string,
+    updatedValue: IDropdownOption<any> | undefined,
+  ) => {
+    return setState({
+      ...state,
+      [fieldName]: { value: updatedValue, fieldError: '' },
+    });
+  };
+
   // output currency
 
   const renderInputCurrency = (str: string) => {
@@ -78,7 +89,6 @@ const IBFilters = ({ setFilterState, items = [] }: IBFiltersProps) => {
     );
   };
 
-  
   // rendering logic
 
   const handleRenderFilters = (filters: FilterItem[]) => {
@@ -120,7 +130,12 @@ const IBFilters = ({ setFilterState, items = [] }: IBFiltersProps) => {
             return (
               <IBBox mr={4} key={id}>
                 {label}
-                <IBSelect options={options} label={label} />
+                <IBSelect
+                  options={options}
+                  label={label}
+                  name={name}
+                  setParentState={preHandleSetStateSelect}
+                />
               </IBBox>
             );
 

@@ -1,6 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import { IStackTokens, Stack } from '@fluentui/react/lib/Stack';
-import { Dropdown, IDropdownStyles } from '@fluentui/react/lib/Dropdown';
+import {
+  Dropdown,
+  IDropdownStyles,
+  IDropdownOption,
+} from '@fluentui/react/lib/Dropdown';
 
 const dropdownStyles: Partial<IDropdownStyles> = {
   dropdown: { width: 300 },
@@ -8,14 +12,26 @@ const dropdownStyles: Partial<IDropdownStyles> = {
 
 const stackTokens: IStackTokens = { childrenGap: 20 };
 
-const IBSelect = ({ options }: any) => {
-  // TODO props interface
+type IBSelectProps = {
+  options: any[] | undefined;
+  label?: string;
+  name: string;
+  setParentState: (
+    // eslint-disable-next-line no-unused-vars
+    name: string,
+    // eslint-disable-next-line no-unused-vars
+    value: IDropdownOption<any> | undefined,
+  ) => void;
+};
+
+const IBSelect = ({ setParentState, options = [], name }: IBSelectProps) => {
   return (
     <Stack tokens={stackTokens}>
       <Dropdown
         placeholder="Select an option"
         options={options}
         styles={dropdownStyles}
+        onChange={(_, value) => setParentState(name, value)}
       />
     </Stack>
   );

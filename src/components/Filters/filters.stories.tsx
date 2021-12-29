@@ -30,7 +30,31 @@ DefaultFilters.args = {
       type: 1,
       placeholder: 'Type any number',
     },
-    { id: 2, name: 'input_select', label: 'Selection', type: 2 },
+    {
+      id: 2,
+      name: 'selectedType',
+      label: 'Selection',
+      type: 2,
+      options: [
+        {
+          key: 'fruitsHeader',
+          text: 'Fruits',
+          itemType: 2,
+        },
+        { key: 'apple', text: 'Apple' },
+        { key: 'banana', text: 'Banana' },
+        { key: 'orange', text: 'Orange', disabled: true },
+        { key: 'grape', text: 'Grape' },
+        {
+          key: 'vegetablesHeader',
+          text: 'Vegetables',
+          itemType: 2,
+        },
+        { key: 'broccoli', text: 'Broccoli' },
+        { key: 'carrot', text: 'Carrot' },
+        { key: 'lettuce', text: 'Lettuce' },
+      ],
+    },
     {
       id: 3,
       name: 'searchByCapital',
