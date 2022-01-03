@@ -11,7 +11,7 @@ type IBToggleProps = {
 
 const toggleStyles = {
   root: {
-    border: '1px solid black',
+    border: '1px solid grey',
   },
 };
 
@@ -24,7 +24,7 @@ const IBToggle: React.FC<IBToggleProps> = ({
 }) => {
   return (
     <Toggle
-      styles={toggleStyles}
+      styles={onText || offText ? toggleStyles : {}}
       label={label}
       checked={checked}
       disabled={disabled}
