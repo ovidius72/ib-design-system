@@ -4,13 +4,13 @@ import { flexbox, FlexboxProps } from 'styled-system';
 
 export type IBFlexProps = FlexboxProps;
 
-const Flex = styled.div`
+const IBFlexStyled = styled.div`
   display: flex;
   ${flexbox}
 `;
 
 const IBFlex: FC<IBFlexProps> = ({ children, ...rest }) => {
-  return <Flex {...rest}>{children}</Flex>;
+  return <IBFlexStyled {...rest}>{children}</IBFlexStyled>;
 };
 
 export { IBFlex };

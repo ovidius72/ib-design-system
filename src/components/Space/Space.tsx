@@ -27,6 +27,13 @@ const IBSpace: FC<IBSpaceProps> = ({
   const stackTokens: IStackTokens = {
     childrenGap: gap,
   };
+  const items = React.Children.toArray(children).map((c, i) => {
+    return (
+      <div className="ibspace-item" key={`ib-space-item-${i}`}>
+        {c}
+      </div>
+    );
+  });
   return (
     <Stack
       grow={false}
@@ -34,7 +41,7 @@ const IBSpace: FC<IBSpaceProps> = ({
       tokens={stackTokens}
       horizontal={!vertical}
     >
-      {children}
+      {items}
     </Stack>
   );
 };
