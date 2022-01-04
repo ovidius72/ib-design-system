@@ -1,4 +1,4 @@
-import { initializeIcons } from '@fluentui/react';
+import { initializeIcons } from '@fluentui/font-icons-mdl2';
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { IBThemeProvider } from '../Providers/ThemeProvider';

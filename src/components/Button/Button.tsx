@@ -9,10 +9,18 @@ export type IBButtonProps = {
   text: string;
   /** Variant type. */
   variant?: 'primary' | 'default';
+  /** fill the available space */
+  fluid?: boolean;
 } & IButtonProps;
 
 const IBButton: FC<IBButtonProps> = props => {
-  const { loading = false, variant = 'default', text, ...rest } = props;
+  const {
+    loading = false,
+    variant = 'default',
+    text,
+    fluid = false,
+    ...rest
+  } = props;
 
   const ButtonType = useMemo(() => {
     return variant === 'default' ? DefaultButton : PrimaryButton;
@@ -22,7 +30,11 @@ const IBButton: FC<IBButtonProps> = props => {
     return <ButtonInner text={text} loading={loading} />;
   }, [text, loading]);
 
-  return <ButtonType {...rest}>{buttonInner}</ButtonType>;
+  return (
+    <ButtonType {...rest} style={{ width: fluid ? '100%' : 'unset' }}>
+      {buttonInner}
+    </ButtonType>
+  );
 };
 
 export { IBButton };

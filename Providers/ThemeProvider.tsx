@@ -1,10 +1,10 @@
-import { IPalette, Theme, ThemeProvider } from '@fluentui/react';
+import { ITheme, Theme, ThemeProvider } from '@fluentui/react';
 import React, {
   createContext,
   FC,
+  useMemo,
   useCallback,
   useContext,
-  useMemo,
   useReducer,
 } from 'react';
 import { darkTheme, ligthTheme } from 'src/theme/theme';
@@ -20,16 +20,16 @@ export type ThemeAction =
   | { type: 'setDark' };
 
 export type ThemeContextType = {
-  theme: ThemeType;
-  palette: IPalette;
+  themeName: ThemeType;
+  theme: ITheme;
   setTheme: (theme: ThemeType) => void;
   setLightTheme: () => void;
   setDarkTheme: () => void;
 };
 
 export const IBThemeContext = createContext<ThemeContextType>({
-  theme: 'light',
-  palette: {} as IPalette,
+  themeName: 'light',
+  theme: ligthTheme,
   setDarkTheme: () => null,
   setTheme: () => null,
   setLightTheme: () => null,
@@ -85,8 +85,8 @@ export const IBThemeProvider: FC<IBThemeContextType> = ({
   return (
     <IBThemeContext.Provider
       value={{
-        palette: theme.palette,
-        theme: state.theme,
+        themeName: state.theme,
+        theme,
         setDarkTheme,
         setLightTheme,
         setTheme,

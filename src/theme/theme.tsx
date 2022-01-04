@@ -25,6 +25,16 @@ const ligthTheme = createTheme({
     black: '#000000',
     white: '#ffffff',
   },
+  semanticColors: {
+    infoIcon: '#00baff',
+    infoBackground: '#9ffaff',
+    warningBackground: '#FFF4cf',
+    warningIcon: '#797775',
+    errorIcon: '#d83b01',
+    errorBackground: '#ffd9cc',
+    successBackground: '#dff6dd',
+    successIcon: '#107c10',
+  },
 });
 
 const darkTheme = createTheme({
@@ -51,6 +61,16 @@ const darkTheme = createTheme({
     neutralDark: '#fdfdfd',
     black: '#fefefe',
     white: '#2e2e2e',
+  },
+  semanticColors: {
+    infoIcon: '#00baff',
+    infoBackground: '#9ffaff',
+    warningBackground: '#FFF4cf',
+    warningIcon: '#797775',
+    errorIcon: '#d83b01',
+    errorBackground: '#ffd9cc',
+    successBackground: '#dff6dd',
+    successIcon: '#107c10',
   },
 });
 

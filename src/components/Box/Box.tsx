@@ -1,5 +1,6 @@
 import React, { FC, HtmlHTMLAttributes } from 'react';
 import styled from 'styled-components';
+
 import {
   border,
   BorderProps,
@@ -31,7 +32,11 @@ const StyledBox = styled.div`
 `;
 
 const IBBox: FC<IBBoxProps> = ({ children, ...rest }) => {
-  return <StyledBox {...rest}>{children}</StyledBox>;
+  return (
+    <StyledBox className="ib-box" {...rest}>
+      {children}
+    </StyledBox>
+  );
 };
 
 export { IBBox };
