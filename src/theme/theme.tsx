@@ -2,13 +2,12 @@ import { createTheme } from '@fluentui/react';
 
 const ligthTheme = createTheme({
   palette: {
-    // themePrimary:
-    //   'linear-gradient(113.96deg, #9B3CFF 0%, #585CFF 48.96%, #51BEA4 100%)',
-    themePrimary: 'dodgerblue', // must be solid
+    themePrimary: '#1E3CFF', //gradient
     themeLighterAlt: '#F1F3FF',
-    themeLighter: '#B3BCFF',
+    themeLighter: '#B2BCFF',
     themeLight: '#8595FE',
     themeTertiary: '#1933DE',
+    themeSecondary: '#1933DE', //mancante
     themeDarkAlt: '#152DCE',
     themeDark: '#1026B9',
     themeDarker: '#0D21A5',
@@ -79,8 +78,21 @@ const darkTheme = createTheme({
     white: '#2e2e2e',
   },
   semanticColors: {
-    buttonBackground:
+    // primary button
+    primaryButtonText: '#fff',
+    primaryButtonBorder: 'none',
+    primaryButtonBackground:
       'linear-gradient(113.96deg, #ff33fc 0%, #ff5456 48.44%, #ffae33 100% )',
+    primaryButtonBackgroundHovered:
+      'linear-gradient(113.96deg, #ff8367 0%, #ff67fe 100%)',
+    primaryButtonBackgroundPressed: '#FF9B00',
+    // secondary button
+    buttonText: '#201F1E',
+    buttonBackground: '#fff',
+    buttonBorder: '1px solid #C8C6C4',
+    buttonBackgroundHovered: '#F3F2F1',
+    buttonBackgroundPressed: '#EDEBE9',
+    //
     infoIcon: '#00baff',
     infoBackground: '#9ffaff',
     warningBackground: '#FFF4cf',
