@@ -1,2 +1,3 @@
-export type SizeType = 'small' | 'medium' | 'large' | 'xLarge';
-export type DirectionType = 'vertical' | 'horizontal';
+export type IBSizeType = 'small' | 'medium' | 'large' | 'xLarge';
+export type IBDirectionType = 'vertical' | 'horizontal';
+export type IBStatusType = 'error' | 'warning' | 'info' | 'success';
