@@ -1,27 +1,47 @@
 import React, { FC, useMemo, useContext } from 'react';
-import {
-  DefaultButton,
-  IButtonProps,
-  PrimaryButton,
-  useTheme,
-} from '@fluentui/react';
+import { DefaultButton, IButtonProps, useTheme } from '@fluentui/react';
 import { ButtonInner } from './ButtonInner';
 import { IBThemeContext } from '../../../Providers/ThemeProvider';
 import styled from 'styled-components';
 
 type StyledButtonProps = {
+  // primary button style
+  primaryButtonTextColor: string;
+  primaryButtonBorder: string;
+  primaryBackground: string;
+  primaryBackgroundHover: string;
+  primaryButtonBackgroundPressed: string;
+  // secondary button style
   buttonTextColor: string;
+  buttonBorder: string;
   background: string;
   backgroundHover: string;
   buttonBackgroundPressed: string;
 };
 
-const StyledButton = styled(DefaultButton)<StyledButtonProps>`
+const IBPrimaryButton = styled(DefaultButton)<StyledButtonProps>`
+  background: ${({ primaryBackground }) => primaryBackground};
+  color: ${({ primaryButtonTextColor }) => primaryButtonTextColor};
+  padding: 6px 20px;
+  border-radius: 2px;
+  border: none;
+  &:hover {
+    background: ${({ primaryBackgroundHover }) => primaryBackgroundHover};
+    color: ${({ primaryButtonTextColor }) => primaryButtonTextColor};
+  }
+  &:active {
+    background: ${({ primaryButtonBackgroundPressed }) =>
+      primaryButtonBackgroundPressed};
+    color: ${({ primaryButtonTextColor }) => primaryButtonTextColor};
+  }
+`;
+
+const IBSecondaryButton = styled(DefaultButton)<StyledButtonProps>`
   background: ${({ background }) => background};
   color: ${({ buttonTextColor }) => buttonTextColor};
   padding: 6px 20px;
   border-radius: 2px;
-  border: none;
+  border: ${({ buttonBorder }) => buttonBorder};
   &:hover {
     background: ${({ backgroundHover }) => backgroundHover};
     color: ${({ buttonTextColor }) => buttonTextColor};
@@ -38,9 +58,11 @@ export type IBButtonProps = {
   /** The text. */
   text: string;
   /** Variant type. */
-  variant?: 'primary' | 'default';
+  variant?: 'primary' | 'secondary';
   /** fill the available space */
   fluid?: boolean;
+  /** is disabled */
+  disabled?: boolean;
 } & IButtonProps;
 
 const IBButton: FC<IBButtonProps> = props => {
@@ -58,7 +80,16 @@ const IBButton: FC<IBButtonProps> = props => {
   console.log(themeName);
 
   const ButtonType = useMemo(() => {
-    return variant === 'default' ? (StyledButton as any) : PrimaryButton;
+    switch (variant) {
+      case 'primary':
+        return IBPrimaryButton as any;
+
+      case 'secondary':
+        return IBSecondaryButton as any;
+
+      default:
+        return IBSecondaryButton as any;
+    }
   }, [variant]);
 
   const buttonInner = useMemo(() => {
@@ -68,7 +99,15 @@ const IBButton: FC<IBButtonProps> = props => {
   return (
     <ButtonType
       {...rest}
-      buttonTextColor={palette.white}
+      // primary
+      primaryButtonTextColor={palette.white}
+      primaryButtonBorde={semanticColors.primaryButtonBorder}
+      primaryBackground={semanticColors.primaryButtonBackground}
+      primaryBackgroundHover={semanticColors.primaryButtonBackgroundHovered}
+      primaryBackgroundPressed={semanticColors.primaryButtonBackgroundPressed}
+      // default
+      buttonTextColor={palette.black}
+      buttonBorder={semanticColors.buttonBorder}
       background={semanticColors.buttonBackground}
       backgroundHover={semanticColors.buttonBackgroundHovered}
       buttonBackgroundPressed={semanticColors.buttonBackgroundPressed}
