@@ -2,15 +2,16 @@ import { createTheme } from '@fluentui/react';
 
 const ligthTheme = createTheme({
   palette: {
-    themePrimary: '#d46520',
-    themeLighterAlt: '#fdf8f5',
-    themeLighter: '#f8e3d6',
-    themeLight: '#f2ccb4',
-    themeTertiary: '#e59d70',
-    themeSecondary: '#d97537',
-    themeDarkAlt: '#be5b1d',
-    themeDark: '#a14d18',
-    themeDarker: '#773812',
+    // themePrimary:
+    //   'linear-gradient(113.96deg, #9B3CFF 0%, #585CFF 48.96%, #51BEA4 100%)',
+    themePrimary: 'dodgerblue', // must be solid
+    themeLighterAlt: '#F1F3FF',
+    themeLighter: '#B3BCFF',
+    themeLight: '#8595FE',
+    themeTertiary: '#1933DE',
+    themeDarkAlt: '#152DCE',
+    themeDark: '#1026B9',
+    themeDarker: '#0D21A5',
     neutralLighterAlt: '#faf9f8',
     neutralLighter: '#f3f2f1',
     neutralLight: '#edebe9',
@@ -26,6 +27,11 @@ const ligthTheme = createTheme({
     white: '#ffffff',
   },
   semanticColors: {
+    buttonBackground:
+      'linear-gradient(113.96deg, #ff33fc 0%, #ff5456 48.44%, #ffae33 100% )',
+    buttonBackgroundHovered:
+      'linear-gradient(113.96deg, #ff8367 0%, #ff67fe 100%)',
+    buttonBackgroundPressed: '#FF9B00',
     infoIcon: '#00baff',
     infoBackground: '#9ffaff',
     warningBackground: '#FFF4cf',
@@ -63,6 +69,8 @@ const darkTheme = createTheme({
     white: '#2e2e2e',
   },
   semanticColors: {
+    buttonBackground:
+      'linear-gradient(113.96deg, #ff33fc 0%, #ff5456 48.44%, #ffae33 100% )',
     infoIcon: '#00baff',
     infoBackground: '#9ffaff',
     warningBackground: '#FFF4cf',

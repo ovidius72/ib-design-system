@@ -1,6 +1,36 @@
-import { DefaultButton, IButtonProps, PrimaryButton } from '@fluentui/react';
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useContext } from 'react';
+import {
+  DefaultButton,
+  IButtonProps,
+  PrimaryButton,
+  useTheme,
+} from '@fluentui/react';
 import { ButtonInner } from './ButtonInner';
+import { IBThemeContext } from '../../../Providers/ThemeProvider';
+import styled from 'styled-components';
+
+type StyledButtonProps = {
+  buttonTextColor: string;
+  background: string;
+  backgroundHover: string;
+  buttonBackgroundPressed: string;
+};
+
+const StyledButton = styled(DefaultButton)<StyledButtonProps>`
+  background: ${({ background }) => background};
+  color: ${({ buttonTextColor }) => buttonTextColor};
+  padding: 6px 20px;
+  border-radius: 2px;
+  border: none;
+  &:hover {
+    background: ${({ backgroundHover }) => backgroundHover};
+    color: ${({ buttonTextColor }) => buttonTextColor};
+  }
+  &:active {
+    background: ${({ buttonBackgroundPressed }) => buttonBackgroundPressed};
+    color: ${({ buttonTextColor }) => buttonTextColor};
+  }
+`;
 
 export type IBButtonProps = {
   /** Show the loading spinner. */
@@ -22,8 +52,13 @@ const IBButton: FC<IBButtonProps> = props => {
     ...rest
   } = props;
 
+  const { themeName } = useContext(IBThemeContext);
+  const { palette, semanticColors } = useTheme();
+
+  console.log(themeName);
+
   const ButtonType = useMemo(() => {
-    return variant === 'default' ? DefaultButton : PrimaryButton;
+    return variant === 'default' ? (StyledButton as any) : PrimaryButton;
   }, [variant]);
 
   const buttonInner = useMemo(() => {
@@ -31,7 +66,14 @@ const IBButton: FC<IBButtonProps> = props => {
   }, [text, loading]);
 
   return (
-    <ButtonType {...rest} style={{ width: fluid ? '100%' : 'unset' }}>
+    <ButtonType
+      {...rest}
+      buttonTextColor={palette.white}
+      background={semanticColors.buttonBackground}
+      backgroundHover={semanticColors.buttonBackgroundHovered}
+      buttonBackgroundPressed={semanticColors.buttonBackgroundPressed}
+      style={{ width: fluid ? '100%' : 'unset' }}
+    >
       {buttonInner}
     </ButtonType>
   );

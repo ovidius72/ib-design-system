@@ -7,7 +7,7 @@ import React, {
   useContext,
   useReducer,
 } from 'react';
-import { darkTheme, ligthTheme } from 'src/theme/theme';
+import { darkTheme, ligthTheme } from '../src/theme/theme';
 
 export type ThemeType = 'light' | 'dark';
 export type ThemeState = {
@@ -92,7 +92,12 @@ export const IBThemeProvider: FC<IBThemeContextType> = ({
         setTheme,
       }}
     >
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider
+        className={`theme-${state.theme} theme-root`}
+        theme={theme}
+      >
+        {children}
+      </ThemeProvider>
     </IBThemeContext.Provider>
   );
 };
