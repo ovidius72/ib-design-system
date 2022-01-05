@@ -1,12 +1,11 @@
 import { mergeStyles, useTheme } from '@fluentui/react';
 import { Icon } from '@fluentui/react/lib/Icon';
 import React, { FC, ReactNode } from 'react';
-import { IBStatusType } from 'src/theme/type';
 import { IBBox } from '../Box/Box';
 import { IBSpace } from '../Space/Space';
 
 export type IBResultProps = {
-  status?: IBStatusType;
+  status?: 'error' | 'warning' | 'info' | 'success';
   icon?: ReactNode | undefined;
   header?: ReactNode;
   subHeader?: ReactNode;

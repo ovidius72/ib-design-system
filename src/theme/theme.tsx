@@ -2,6 +2,7 @@ import { createTheme } from '@fluentui/react';
 
 const ligthTheme = createTheme({
   palette: {
+    thisColor: 'red',
     themePrimary: '#d46520',
     themeLighterAlt: '#fdf8f5',
     themeLighter: '#f8e3d6',

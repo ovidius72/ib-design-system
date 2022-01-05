@@ -5,16 +5,7 @@
     "jsx": "preserve",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./",
-    "paths": {
-      "models": ["src/models/*"],
-      "images": ["src/images/*"],
-      "utils": ["src/utils/*"],
-      "components": [
-        "src/components/*"
-      ],
-      "src": ["src/*"]
-    }
+    "baseUrl": "./"
   },
   "exclude": ["node_modules", "build", "locale", "config"],
   "include": ["src/**/*"]

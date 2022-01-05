@@ -14,15 +14,7 @@
     "strictNullChecks": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "baseUrl": "./",
-    "paths": {
-      "models/*": ["src/models/*"],
-      "images/*": ["src/images/*"],
-      "src/*": ["src/*"],
-      "utils/*": ["src/utils/*"],
-      "components/*": ["src/components/*"],
-      "test-utils": ["./testing/test-utils"]
-    }
+    "baseUrl": "./"
   },
   "exclude": ["node_modules", "build", "locale", "config", "*.stories.*"],
   "include": ["./src/**/*", "./typings/**/*.d.ts", "./testing/test-setup.ts"]
