@@ -1,5 +1,6 @@
 import { DefaultButton, IButtonProps, PrimaryButton } from '@fluentui/react';
 import React, { FC, useMemo } from 'react';
+import styled from 'styled-components';
 import { ButtonInner } from './ButtonInner';
 
 export type IBButtonProps = {
@@ -13,6 +14,31 @@ export type IBButtonProps = {
   fluid?: boolean;
 } & IButtonProps;
 
+const StyledPrimaryButton = styled(PrimaryButton)`
+  background: ${p => p.theme.palette.primaryButtonBackgroungGradiend};
+  border: none;
+  transition: all 0.4s ease-out;
+  &:hover {
+    transition: all 0.4s ease-in;
+    background: ${p => p.theme.palette.primaryButtonBackgroungGradiendHovered};
+    background-image: ${p =>
+      p.theme.palette.primaryButtonBackgroungGradiendHovered};
+    border: none;
+  }
+  &:focus {
+    transition: all 0.4s ease-in;
+    background: ${p => p.theme.palette.primaryButtonBackgroungGradiendFocuses};
+    background-image: ${p =>
+      p.theme.palette.primaryButtonBackgroungGradiendFocuses};
+    border: none;
+  }
+  &:active {
+    transition: all 0.4s ease-in;
+    background: ${p => p.theme.palette.primaryButtonBackgroungGradiendPressed};
+    border: none;
+  }
+`;
+
 const IBButton: FC<IBButtonProps> = props => {
   const {
     loading = false,
@@ -23,7 +49,7 @@ const IBButton: FC<IBButtonProps> = props => {
   } = props;
 
   const ButtonType = useMemo(() => {
-    return variant === 'default' ? DefaultButton : PrimaryButton;
+    return variant === 'default' ? DefaultButton : (StyledPrimaryButton as any);
   }, [variant]);
 
   const buttonInner = useMemo(() => {

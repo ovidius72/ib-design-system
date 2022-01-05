@@ -1,7 +1,7 @@
 import { Alignment } from '@fluentui/react';
 import React, { FC } from 'react';
-import styled from 'styled-components';
 import { IBSizeType } from '../../theme/types';
+import styled from 'styled-components';
 
 export type IBSpaceProps = {
   /** Whether render as a column or not*/

@@ -1,8 +1,17 @@
 import { createTheme } from '@fluentui/react';
-
+//
 const ligthTheme = createTheme({
   palette: {
-    thisColor: 'red',
+    // primary button
+    primaryButtonBackgroungGradiend:
+      'linear-gradient(113.96deg, #FF33FC 0%, #FF5456 48.44%, #FFAE33 100%)',
+    primaryButtonBackgroungGradiendHovered:
+      'linear-gradient(113.96deg, #FF8367 0%, #FF67FE 100%)',
+    primaryButtonBackgroungGradiendPressed: '#FF9B00',
+    primaryButtonBackgroungGradiendDisabled: '#A19F9D',
+    primaryButtonBackgroungGradiendFocuses:
+      'linear-gradient(113.96deg, #FF33FC 0%, #FF5456 48.44%, #FFAE33 100%)',
+    primaryButtonColor: '#ffffff',
     themePrimary: '#d46520',
     themeLighterAlt: '#fdf8f5',
     themeLighter: '#f8e3d6',
