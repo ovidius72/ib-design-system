@@ -2,12 +2,13 @@ import { ITheme, Theme, ThemeProvider } from '@fluentui/react';
 import React, {
   createContext,
   FC,
-  useMemo,
   useCallback,
   useContext,
+  useMemo,
   useReducer,
 } from 'react';
-import { darkTheme, ligthTheme } from 'src/theme/theme';
+import { darkTheme, ligthTheme } from '../theme/theme';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
 export type ThemeType = 'light' | 'dark';
 export type ThemeState = {
@@ -92,7 +93,9 @@ export const IBThemeProvider: FC<IBThemeContextType> = ({
         setTheme,
       }}
     >
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
+      </ThemeProvider>
     </IBThemeContext.Provider>
   );
 };

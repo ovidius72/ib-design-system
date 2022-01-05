@@ -1,15 +1,26 @@
 import { Alignment } from '@fluentui/react';
 import React, { FC } from 'react';
-import { IBSizeType } from 'src/theme/type';
 import styled from 'styled-components';
+import { IBSizeType } from '../../theme/types';
 
 export type IBSpaceProps = {
+  /** Whether render as a column or not*/
   vertical?: boolean;
-  size?: IBSizeType | number;
+  /** The elements horizontal alignment */
   hAlign?: Alignment;
+  /** The elements vertical alignment */
   vAlign?: Alignment;
+  /** If true covers the available space */
   fluid?: boolean;
+  /** Optional css styles */
   style?: React.CSSProperties;
+
+  /**
+   * The space size.
+   */
+  size?: IBSizeType;
+
+  customSize?: number;
 };
 
 const SpaceContainer = styled.div<IBSpaceProps & { gap: number }>`
@@ -18,6 +29,7 @@ const SpaceContainer = styled.div<IBSpaceProps & { gap: number }>`
   justify-content: ${p => (p.vertical ? p.vAlign : p.hAlign)};
   align-items: ${p => (p.vertical ? p.hAlign : p.vAlign)};
   gap: ${p => `${p.gap}px`};
+  height: ${p => (p.fluid ? '100%' : 'unset')};
 `;
 
 const gapSize = {
@@ -25,10 +37,11 @@ const gapSize = {
   medium: 6,
   large: 12,
   xLarge: 18,
-  default: 0,
+  none: 0,
 };
 const IBSpace: FC<IBSpaceProps> = ({
   size,
+  customSize,
   children,
   fluid = false,
   hAlign: align = 'start',
@@ -37,7 +50,9 @@ const IBSpace: FC<IBSpaceProps> = ({
   style,
 }) => {
   const sizeIsNumber = typeof size === 'number';
-  const gap = sizeIsNumber ? size : gapSize[size || 'default'];
+  const gap = sizeIsNumber ? size : gapSize[size || 'none'];
+  console.log('gap', gap);
+  console.log('customSize', customSize);
 
   const items = React.Children.toArray(children).map(c => {
     return c;
@@ -46,7 +61,8 @@ const IBSpace: FC<IBSpaceProps> = ({
   return (
     <SpaceContainer
       className="ib-space"
-      gap={gap}
+      gap={customSize ?? gap}
+      size={size}
       hAlign={align}
       vAlign={justify}
       vertical={vertical}

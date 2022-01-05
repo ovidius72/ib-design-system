@@ -143,13 +143,6 @@ const config = (mode, cb) => {
       },
       resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        alias: {
-          models: path.join(paths.src, 'models'),
-          images: path.join(paths.src, 'images'),
-          utils: path.join(paths.src, 'utils'),
-          components: path.join(paths.src, 'components'),
-          src: paths.src,
-        },
       },
       plugins: [
         new webpack.DefinePlugin(envs),

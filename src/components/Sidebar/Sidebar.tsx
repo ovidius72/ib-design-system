@@ -1,16 +1,15 @@
 import { IconButton, Stack } from '@fluentui/react';
 import { IPanelProps, Panel, PanelType } from '@fluentui/react/lib/Panel';
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { IBSizeType } from 'src/theme/type';
 import { IBSpace } from '../Space/Space';
 
 export type IBSidebarProps = {
-  size?: IBSizeType;
+  size?: 'small' | 'medium' | 'large' | 'xLarge';
   onClose?: () => void;
   subPanel: {
     subPanelContent?: React.ReactNode;
     onClose?: () => void;
-    size?: IBSizeType;
+    size?: 'small' | 'medium' | 'large' | 'xLarge';
   } & IPanelProps;
 } & IPanelProps;
 

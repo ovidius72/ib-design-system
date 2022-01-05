@@ -1,22 +1,22 @@
 import React from 'react';
-import {ThemeProvider} from "@fluentui/react";
 import { ligthTheme } from '../src/theme/theme';
+import { IBThemeProvider } from '../src/providers/ThemeProvider';
 
 // addDecorator(withTheme(ThemeProvider, [ligthTheme]));
 export const decorators = [
-  (Story) => (
-    <ThemeProvider theme={ligthTheme}>
+  Story => (
+    <IBThemeProvider them={ligthTheme}>
       <Story />
-    </ThemeProvider>
-  )
+    </IBThemeProvider>
+  ),
 ];
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
     },
   },
-}
+};

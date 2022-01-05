@@ -1,7 +1,7 @@
 import { initializeIcons } from '@fluentui/font-icons-mdl2';
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-import { IBThemeProvider } from '../Providers/ThemeProvider';
+import { IBThemeProvider } from './providers/ThemeProvider';
 import App from './App';
 
 const root = document.getElementById('root');

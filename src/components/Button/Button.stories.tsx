@@ -3,7 +3,7 @@ import React from 'react';
 import { IBButton, IBButtonProps } from './Button';
 
 export default {
-  title: 'Atoms/Button',
+  title: 'Atoms/IBButton',
   component: IBButton,
   argTypes: {},
 } as Meta<IBButtonProps>;

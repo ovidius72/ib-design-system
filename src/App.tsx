@@ -1,6 +1,6 @@
 import { PanelType } from '@fluentui/react';
 import React, { useContext, useState } from 'react';
-import { IBThemeContext } from '../Providers/ThemeProvider';
+import { IBThemeContext } from './providers/ThemeProvider';
 import { IBBox } from './components/Box/Box';
 import { IBButton } from './components/Button/Button';
 import { IBFlex } from './components/Flex/Flex';
